@@ -36,8 +36,32 @@ class book
 
 
 void book::add_book()
-{
-    //Sakshi or Shikha
+{  struct b_node *newnode,*temp;
+newnode= (struct b_node *)malloc(sizeof(struct b_node))
+    printf(“Enter book name\n”);
+    scanf(&str, newnode->b_name); 
+    printf(“Enter book ID\n”);
+    scanf(&str, newnode->b_id); 
+    printf(“Enter book genre\n”);
+    scanf(&str, newnode->b_ genre); 
+    printf(“Enter book author\n”);
+    scanf(&str, newnode->b_author); 
+    printf(“Enter price of the book\n”);
+    scanf(&double, newnode->price); 
+    printf(“Enter book edition\n”);
+    scanf(&int, newnode->edition); 
+    printf(“Enter quantity of the book\n”);
+    scanf(&int, newnode-> total_qty);
+    //printf(“Number of books left”);
+// to be or not to be taken by the user!
+newnode->next=null;
+
+if(head==null)
+{head=temp=newnode;}
+else
+{temp->next=newnode;
+temp=newnode;}
+
 }
 
 void book::remove_book()
