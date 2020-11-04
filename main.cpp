@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 struct b_node
@@ -29,33 +28,47 @@ class book
         void add_book();
         void update_b_details();
         void remove_book();
+        void display();
 
         //void  recommend_book(head);
-};
+}b;
 
+void book::display(){
+
+struct b_node *newnode = head;
+while(newnode!=NULL){
+    cout<<" book name :"<<newnode->b_name<<endl;
+    cout<<" book ID :"<<newnode->b_id<<endl;
+    cout<<"book genre :"<<newnode->b_genre<<endl;
+    cout<<"book author :"<<newnode->b_author<<endl;
+    cout<<"price of the book :"<<newnode->price<<endl;
+    cout<<"book edition :"<<newnode->edition<<endl;
+    cout<<"quantity of the book :"<<newnode-> total_qty<<endl;
+    newnode=newnode->next;
+}}
 
 void book::add_book()
 {  struct b_node *newnode,*temp;
-newnode= (struct b_node *)malloc(sizeof(struct b_node))
-    printf(“Enter book name\n”);
-    scanf(&str, newnode->b_name); 
-    printf(“Enter book ID\n”);
-    scanf(&str, newnode->b_id); 
-    printf(“Enter book genre\n”);
-    scanf(&str, newnode->b_ genre); 
-    printf(“Enter book author\n”);
-    scanf(&str, newnode->b_author); 
-    printf(“Enter price of the book\n”);
-    scanf(&double, newnode->price); 
-    printf(“Enter book edition\n”);
-    scanf(&int, newnode->edition); 
-    printf(“Enter quantity of the book\n”);
-    scanf(&int, newnode-> total_qty);
+newnode= new b_node ;
+    cout<<"Enter book name\n";
+    cin>>newnode->b_name;
+    cout<<"Enter book ID\n";
+    cin>>newnode->b_id;
+    cout<<"Enter book genre";
+  cin>>newnode->b_genre;
+    cout<<"Enter book author\n";
+    cin>> newnode->b_author;
+    cout<<"Enter price of the book\n";
+    cin>> newnode->price;
+    cout<<"Enter book edition\n";
+    cin>>newnode->edition;
+    cout<<"Enter quantity of the book\n";
+    cin>>newnode-> total_qty;
     //printf(“Number of books left”);
 // to be or not to be taken by the user!
-newnode->next=null;
+newnode->next=NULL;
 
-if(head==null)
+if(head==NULL)
 {head=temp=newnode;}
 else
 {temp->next=newnode;
@@ -133,14 +146,38 @@ class visitor
         //Issue
         //Re-issue
         //Return
-};
+}v;
 
 
 
 
 void visitor::add_member()
-{
-    //Sakshi or Shikha
+{ struct v_node *newnode,*temp;
+newnode= new v_node;
+    cout<<"Enter member name\n";
+    cin>>newnode->v_name;
+    cout<<"Enter membership number";
+    cin>>newnode->mem_no;
+    cout<<"Enter email\n";
+    cin>>newnode->email;
+    cout<<"Enter membership type\n";
+    cin>>newnode->mem_type;
+   cout<<"Enter expiry date\n";
+    cin>>newnode->exp_date;
+    cout<<"Enter no. of books\n";
+    cin>> newnode->no_of_books;
+    cout<<"Enter money due\n";
+    cin>> newnode-> money_due;
+cout<<"Enter book id issued\n";
+    cin>> newnode->m_b_id;
+newnode->next=NULL;
+
+if(head==NULL)
+{head=temp=newnode;}
+else
+{temp->next=newnode;
+temp=newnode;}
+
 }
 
 
@@ -148,5 +185,8 @@ void visitor::add_member()
 int main()
 {
     cout << "Hello world!" << endl;
+   b.add_book();
+   b.display();
+
     return 0;
 }
