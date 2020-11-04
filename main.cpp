@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+//BOOK NODE
 struct b_node
 {
     char b_name[70];
@@ -15,7 +15,7 @@ struct b_node
     b_node * next;
 };
 
-
+//BOOK CLASS
 class book
 {
     b_node * head;
@@ -35,10 +35,12 @@ class book
         //void  recommend_book(head);
 }b;
 
-void book::display(){
-
-struct b_node *newnode = head;
-while(newnode!=NULL){
+//DISPLAY ALL BOOKS
+void book::display()
+{
+    struct b_node *newnode = head;
+    while(newnode!=NULL)
+{
     cout<<" book name :"<<newnode->b_name<<endl;
     cout<<" book ID :"<<newnode->b_id<<endl;
     cout<<"book genre :"<<newnode->b_genre<<endl;
@@ -47,17 +49,19 @@ while(newnode!=NULL){
     cout<<"book edition :"<<newnode->edition<<endl;
     cout<<"quantity of the book :"<<newnode-> total_qty<<endl;
     newnode=newnode->next;
-}}
-
+}
+}
+//ADD BOOK
 void book::add_book()
-{  struct b_node *newnode,*temp;
-newnode= new b_node ;
+{  
+    struct b_node *newnode;
+    newnode= new b_node ;
     cout<<"Enter book name\n";
     cin>>newnode->b_name;
     cout<<"Enter book ID\n";
     cin>>newnode->b_id;
     cout<<"Enter book genre";
-  cin>>newnode->b_genre;
+    cin>>newnode->b_genre;
     cout<<"Enter book author\n";
     cin>> newnode->b_author;
     cout<<"Enter price of the book\n";
@@ -67,37 +71,42 @@ newnode= new b_node ;
     cout<<"Enter quantity of the book\n";
     cin>>newnode-> total_qty;
     //printf(“Number of books left”);
-// to be or not to be taken by the user!
-newnode->next=NULL;
+    // to be or not to be taken by the user!
+    newnode->next=NULL;
 
-if(head==NULL)
-{head=newnode;
-tail=newnode;}
-else
-{tail->next=newnode;
-tail=newnode;}
+    if(head==NULL)
+    {
+        head=newnode;
+        tail=newnode;
+    }
+    else
+    {   
+        tail->next=newnode;
+        tail=newnode;
+    }
 
 }
-
+//REMOVE BOOK---TO BE REVIEWED
 void book::remove_book()
-{int b;
+{
+    int b;
     cout<<"enter element to be deleted ";
     cin>>b;
-   int i=1;
-struct b_node *temp;
-struct b_node *nextnode;
-temp=head;
-while(i<b-1)
-    {
-        temp=temp->next;
-        i++;
-    }
- nextnode=temp->next;
- temp->next=nextnode->next;
-    delete nextnode;
+    int i=1;
+    struct b_node *temp;
+    struct b_node *nextnode;
+    temp=head;
+    while(i<b-1)
+        {
+            temp=temp->next;
+            i++;
+        }
+     nextnode=temp->next;
+     temp->next=nextnode->next;
+     delete nextnode;
 
 
-}
+}//review this
 
 //struct b_node* book:: srch(){
 //    int bid;
@@ -115,7 +124,7 @@ while(i<b-1)
 //    return NULL;
 //}
 
-
+//VISITOR STRUCTURE
 struct v_node
 {
     char v_name[70];
@@ -130,7 +139,7 @@ struct v_node
 
     v_node * next;
 };
-
+//VISITOR CLASS
 class visitor
 {
     v_node * head;
@@ -153,10 +162,11 @@ class visitor
 
 
 
-
+//ADDING MEMBER 
 void visitor::add_member()
-{ struct v_node *newnode,*temp;
-newnode= new v_node;
+{ 
+    struct v_node *newnode;
+    newnode= new v_node;
     cout<<"Enter member name\n";
     cin>>newnode->v_name;
     cout<<"Enter membership number";
@@ -165,21 +175,26 @@ newnode= new v_node;
     cin>>newnode->email;
     cout<<"Enter membership type\n";
     cin>>newnode->mem_type;
-   cout<<"Enter expiry date\n";
+    cout<<"Enter expiry date\n";
     cin>>newnode->exp_date;
     cout<<"Enter no. of books\n";
     cin>> newnode->no_of_books;
     cout<<"Enter money due\n";
     cin>> newnode-> money_due;
-cout<<"Enter book id issued\n";
+    cout<<"Enter book id issued\n";
     cin>> newnode->m_b_id;
-newnode->next=NULL;
+    newnode->next=NULL;
 
-if(head==NULL)
-{head=temp=newnode;}
-else
-{temp->next=newnode;
-temp=newnode;}
+    if(head==NULL)
+    {
+        head=newnode;
+        tail=newnode;
+    }
+    else
+    {
+        tail->next=newnode;
+        tail=newnode;
+    }
 
 }
 
@@ -188,8 +203,8 @@ temp=newnode;}
 int main()
 {
     cout << "Hello world!" << endl;
-   b.add_book();
-   b.display();
+    b.add_book();
+    b.display();
 
     return 0;
 }
