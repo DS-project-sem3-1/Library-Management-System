@@ -19,10 +19,12 @@ struct b_node
 class book
 {
     b_node * head;
+    b_node * tail;
     public:
         book()
         {
             head=NULL;
+            tail=NULL;
         }
 
         void add_book();
@@ -69,10 +71,11 @@ newnode= new b_node ;
 newnode->next=NULL;
 
 if(head==NULL)
-{head=temp=newnode;}
+{head=newnode;
+tail=newnode;}
 else
-{temp->next=newnode;
-temp=newnode;}
+{tail->next=newnode;
+tail=newnode;}
 
 }
 
