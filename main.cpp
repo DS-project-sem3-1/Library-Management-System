@@ -20,11 +20,13 @@ class book
 {
     b_node * head;
     b_node * tail;
+    int times;
     public:
         book()
         {
             head=NULL;
             tail=NULL;
+            times = 0;
         }
 
         void add_book();
@@ -123,7 +125,7 @@ void book::remove_book()
 //    }
 //    return NULL;
 //}
-
+/*
 //VISITOR STRUCTURE
 struct v_node
 {
@@ -197,7 +199,7 @@ void visitor::add_member()
     }
 
 }
-
+*/
 
 
 int main()
