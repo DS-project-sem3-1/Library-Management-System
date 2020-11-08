@@ -33,6 +33,7 @@ class book
         void remove_book();
         void display();
         void times_initialize();
+    void edit_details();
 
         //void  recommend_book(head);
 }b;
