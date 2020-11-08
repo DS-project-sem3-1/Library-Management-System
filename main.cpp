@@ -114,6 +114,13 @@ void times_initialize()
 {
     times = 0;
 }
+void book :: reissue()     //initialize times  **************************************
+{
+if(times<3)
+     times++;
+else
+     cout<<"Book cannot be reissued!"; 
+}
 
 //SEARCHING
 b_node * book:: srch()
