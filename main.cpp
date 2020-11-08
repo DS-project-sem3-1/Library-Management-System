@@ -11,6 +11,7 @@ struct b_node
     int edition;
     int total_qty;
     int qty_left;
+    int times;
 
     b_node * next;
 };
@@ -20,19 +21,18 @@ class book
 {
     b_node * head;
     b_node * tail;
-    int times;
     public:
         book()
         {
             head=NULL;
             tail=NULL;
-            times = 0;
         }
 
         void add_book();
         void update_b_details();
         void remove_book();
         void display();
+        void times_initialize();
 
         //void  recommend_book(head);
 }b;
@@ -110,21 +110,32 @@ void book::remove_book()
 
 }//review this
 
-//struct b_node* book:: srch(){
-//    int bid;
-//            cout<<"enter book id to be deleted ";
-//            cin>>bid;
-// struct b_node *temp =head;
-//    while (temp != NULL)
-//    {
-//        if ( temp-> b_id == bid)
-//        {
-//            return temp;
-//        }
-//        temp = temp->next;
-//    }
-//    return NULL;
-//}
+void times_initialize()
+{
+    times = 0;
+}
+
+//SEARCHING
+b_node * book:: srch()
+{
+    char bid[5];
+            cout<<"enter book id to be deleted ";
+            cin>>bid;
+    b_node * temp = head;
+    while (temp != NULL)
+    {
+        if ( temp->b_id == bid)
+        {
+            return temp;
+        }
+        temp = temp->next;
+    }
+   return NULL;
+}
+
+
+
+
 /*
 //VISITOR STRUCTURE
 struct v_node
