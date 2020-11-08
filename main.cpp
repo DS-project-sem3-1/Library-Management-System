@@ -114,6 +114,7 @@ void times_initialize()
 {
     times = 0;
 }
+
 void book :: reissue()     //initialize times  **************************************
 {
 if(times<3)
@@ -121,6 +122,77 @@ if(times<3)
 else
      cout<<"Book cannot be reissued!"; 
 }
+
+
+void edit detail()
+{
+ printf("Enter book_id to edit details");
+ scanf(&str,book_id);
+ 
+ struct b_node*ptr;
+ ptr=(struct b_node*)mallloc(size of (struct b_node))
+ ptr= srch(book_id);
+  int choice;
+  printf("Enter choice what needs to be changed");
+  Details that will edit :
+  1.book_name
+  2.book_id
+  3.book_genre
+  4.book_author
+  5.price
+  6.edition
+  7.total_qty
+  8. qty_left
+
+  scanf("%d",&choice);
+  
+  Switch(choice)
+  {
+  Case 1:
+        printf("Enter the book_name");
+        scanf(&str,book_name);
+        break;
+        
+  Case 2:
+        printf("Enter the book_id");
+        scanf(&str,book_id);
+        break;
+  
+  Case 3:
+        printf("Enter the book_genre");
+        scanf(&str,book_genre);
+        break;
+        
+  Case 4:
+        printf("Enter the book_author");
+        scanf(&str,book_author);
+        break;
+        
+  Case 5:
+        printf("Enter the price of book");
+        scanf(&double,price);
+        break;
+        
+  Case 6:
+        printf("Enter the book_edition");
+        scanf(&int,book_edition);
+        break;
+        
+  Case 7:
+        printf("Enter the total quantity");
+        scanf(&int,total_qty);
+        break;
+        
+  Case 8:
+        printf("Enter the remaining quantity");
+        scanf(&int,qty_left);
+        break;
+        }
+}
+
+
+
+
 
 //SEARCHING
 b_node * book:: srch()
