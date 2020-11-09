@@ -1,4 +1,5 @@
 #include <iostream>
+#include<string.h>
 using namespace std;
 //BOOK NODE
 struct b_node
@@ -33,10 +34,11 @@ class book
         void remove_book();
         void display();
         void times_initialize();
-        void edit_details();
+        void edit_detail();
         void reissue();
         void b_return();
         void issue();
+        b_node *srch(char arr[5]);
 
         //void  recommend_book(head);
 }b;
@@ -59,7 +61,7 @@ void book::display()
 }
 //ADD BOOK
 void book::add_book()
-{  
+{
     struct b_node *newnode;
     newnode= new b_node ;
     cout<<"Enter book name\n";
@@ -78,6 +80,7 @@ void book::add_book()
     cin>>newnode-> total_qty;
     //printf(“Number of books left”);
     // to be or not to be taken by the user!
+    newnode->times = 0;
     newnode->next=NULL;
 
     if(head==NULL)
@@ -86,7 +89,7 @@ void book::add_book()
         tail=newnode;
     }
     else
-    {   
+    {
         tail->next=newnode;
         tail=newnode;
     }
@@ -114,86 +117,82 @@ void book::remove_book()
 
 }//review this
 
-void times_initialize()
-{
-    times = 0;
-}
+//void book :: times_initialize()
+//{
+//    times = 0;
+//}
 
-void book :: reissue()     
+void book :: reissue()
 {
     char book_id[5];
     cout<<"Enter book ID";
     cin>>book_id;
-    b_node * ptr = srch(book_id);
+   struct b_node *ptr = srch(book_id);
     if(ptr->times < 3)
          ptr->times++;
     else
-         cout<<"Book cannot be reissued!"; 
+         cout<<"Book cannot be reissued!";
 }
 
 
-void edit_detail()// A lot of mistakes--to be checked
+void book :: edit_detail()// A lot of mistakes--to be checked
 {
- printf("Enter book_id to edit details");
- scanf(&str,book_id);
- 
- struct b_node*ptr;
- ptr=(struct b_node*)mallloc(size of (struct b_node))
- ptr= srch(book_id);
-  int choice;
-  printf("Enter choice what needs to be changed");
-  Details that will edit :
-  1.book_name
-  2.book_id
-  3.book_genre
-  4.book_author
-  5.price
-  6.edition
-  7.total_qty
-  8. qty_left
+ char book_id[5];
+ cout<<"Enter book_id to edit details";
+ cin>>book_id;
+ int choice;
 
-  scanf("%d",&choice);
-  
-  Switch(choice)
+ b_node * ptr;
+ //ptr = new b_node;
+
+  ptr= srch(book_id);
+  cout<<"Enter choice";
+  cout<<"1.book_name\n2.book_id\n3.book_genre";
+  cout<<"4.book_author\n5.price\n6.edition";
+  cout<<"7.total_qty\n8.qty_left";
+
+  cin>>choice;
+
+  switch(choice)
   {
-  Case 1:
-        printf("Enter the book_name");
-        scanf(&str,book_name);
+  case 1:
+        cout<<"Enter the book_name";
+        cin>>ptr->b_name;
         break;
-        
-  Case 2:
-        printf("Enter the book_id");
-        scanf(&str,book_id);
+
+  case 2:
+        cout<<"Enter the book_id";
+        cin>>ptr->b_id;
         break;
-  
-  Case 3:
-        printf("Enter the book_genre");
-        scanf(&str,book_genre);
+
+  case 3:
+        cout<<"Enter the book_genre";
+        cin>>ptr->b_genre;
         break;
-        
-  Case 4:
-        printf("Enter the book_author");
-        scanf(&str,book_author);
+
+  case 4:
+        cout<<"Enter the book_author";
+        cin>>ptr->b_author;
         break;
-        
-  Case 5:
-        printf("Enter the price of book");
-        scanf(&double,price);
+
+  case 5:
+        cout<<"Enter the price of book";
+        cin>>ptr->price;
         break;
-        
-  Case 6:
-        printf("Enter the book_edition");
-        scanf(&int,book_edition);
+
+  case 6:
+        cout<<"Enter the book_edition";
+        cin>>ptr->edition;
         break;
-        
-  Case 7:
-        printf("Enter the total quantity");
-        scanf(&int,total_qty);
+
+  case 7:
+        cout<<"Enter the total quantity";
+        cin>>ptr->total_qty;
         break;
-        
-  Case 8:
-        printf("Enter the remaining quantity");
-        scanf(&int,qty_left);
+
+  case 8:
+        cout<<"Enter the remaining quantity";
+        cin>>ptr->qty_left;
         break;
         }
 }
@@ -203,15 +202,12 @@ void edit_detail()// A lot of mistakes--to be checked
 
 
 //SEARCHING
-b_node * book:: srch()
+b_node *book:: srch(char arr[5])
 {
-    char bid[5];
-            cout<<"enter book id to be deleted ";
-            cin>>bid;
     b_node * temp = head;
     while (temp != NULL)
     {
-        if ( temp->b_id == bid)
+        if (!strcmp(temp->b_id,arr))
         {
             return temp;
         }
@@ -262,9 +258,9 @@ class visitor
 
 
 
-//ADDING MEMBER 
+//ADDING MEMBER
 void visitor::add_member()
-{ 
+{
     struct v_node *newnode;
     newnode= new v_node;
     cout<<"Enter member name\n";
@@ -304,7 +300,10 @@ int main()
 {
     cout << "Hello world!" << endl;
     b.add_book();
+    b_node * v= b.srch("ab");
+    cout<<v->b_name;
     b.display();
+    b.edit_detail();
 
     return 0;
 }
