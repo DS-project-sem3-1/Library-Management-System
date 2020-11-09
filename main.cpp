@@ -15,7 +15,7 @@ struct b_node
     int times;
 
     b_node * next;
-};
+}p;
 
 //BOOK CLASS
 class book
@@ -81,6 +81,7 @@ void book::add_book()
     //printf(“Number of books left”);
     // to be or not to be taken by the user!
     newnode->times = 0;
+    newnode->qty_left=newnode->total_qty;
     newnode->next=NULL;
 
     if(head==NULL)
@@ -216,7 +217,18 @@ b_node *book:: srch(char arr[5])
    return NULL;
 }
 
+void book :: issue()
+{
+if( p.qty_left>0)
+{p.qty_left-=1;}
+else
+cout <<"cannot issue";
+cout<<"left " << p.qty_left ;
+}
 
+void book:: b_return()
+{ p.qty_left+=1;
+}
 
 
 /*
@@ -300,10 +312,11 @@ int main()
 {
     cout << "Hello world!" << endl;
     b.add_book();
-    b_node * v= b.srch("ab");
-    cout<<v->b_name;
+    b.add_book();
     b.display();
     b.edit_detail();
+    b.display();
+
 
     return 0;
 }
