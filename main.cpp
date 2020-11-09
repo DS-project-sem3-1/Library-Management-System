@@ -33,7 +33,10 @@ class book
         void remove_book();
         void display();
         void times_initialize();
-    void edit_details();
+        void edit_details();
+        void reissue();
+        void b_return();
+        void issue();
 
         //void  recommend_book(head);
 }b;
@@ -116,16 +119,20 @@ void times_initialize()
     times = 0;
 }
 
-void book :: reissue()     //initialize times  **************************************
+void book :: reissue()     
 {
-if(times<3)
-     times++;
-else
-     cout<<"Book cannot be reissued!"; 
+    char book_id[5];
+    cout<<"Enter book ID";
+    cin>>book_id;
+    b_node * ptr = srch(book_id);
+    if(ptr->times < 3)
+         ptr->times++;
+    else
+         cout<<"Book cannot be reissued!"; 
 }
 
 
-void edit detail()
+void edit_detail()// A lot of mistakes--to be checked
 {
  printf("Enter book_id to edit details");
  scanf(&str,book_id);
