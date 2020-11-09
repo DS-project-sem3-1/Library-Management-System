@@ -49,13 +49,13 @@ void book::display()
     struct b_node *newnode = head;
     while(newnode!=NULL)
 {
-    cout<<" book name :"<<newnode->b_name<<endl;
-    cout<<" book ID :"<<newnode->b_id<<endl;
-    cout<<"book genre :"<<newnode->b_genre<<endl;
-    cout<<"book author :"<<newnode->b_author<<endl;
-    cout<<"price of the book :"<<newnode->price<<endl;
-    cout<<"book edition :"<<newnode->edition<<endl;
-    cout<<"quantity of the book :"<<newnode-> total_qty<<endl;
+    cout<<" \nBook name :"<<newnode->b_name<<endl;
+    cout<<" Book ID :"<<newnode->b_id<<endl;
+    cout<<"Book genre :"<<newnode->b_genre<<endl;
+    cout<<"Book author :"<<newnode->b_author<<endl;
+    cout<<"Price of the book :"<<newnode->price<<endl;
+    cout<<"Book edition :"<<newnode->edition<<endl;
+    cout<<"Total quantity of the book :"<<newnode-> total_qty<<endl;
     newnode=newnode->next;
 }
 }
@@ -64,7 +64,7 @@ void book::add_book()
 {
     struct b_node *newnode;
     newnode= new b_node ;
-    cout<<"Enter book name\n";
+    cout<<"\nEnter book name\n";
     cin>>newnode->b_name;
     cout<<"Enter book ID\n";
     cin>>newnode->b_id;
@@ -100,11 +100,11 @@ void book::add_book()
 void book::remove_book()
 {
     int b;
-    cout<<"enter element to be deleted ";
+    cout<<"\nEnter element to be deleted:";
     cin>>b;
     int i=1;
-    struct b_node *temp;
-    struct b_node *nextnode;
+    struct b_node * temp;
+    struct b_node * nextnode;
     temp=head;
     while(i<b-1)
         {
@@ -126,7 +126,7 @@ void book::remove_book()
 void book :: reissue()
 {
     char book_id[5];
-    cout<<"Enter book ID";
+    cout<<"\nEnter book ID";
     cin>>book_id;
    struct b_node *ptr = srch(book_id);
     if(ptr->times < 3)
@@ -148,51 +148,51 @@ void book :: edit_detail()// A lot of mistakes--to be checked
 
   ptr= srch(book_id);
   cout<<"Enter choice";
-  cout<<"1.book_name\n2.book_id\n3.book_genre";
-  cout<<"4.book_author\n5.price\n6.edition";
-  cout<<"7.total_qty\n8.qty_left";
+  cout<<"1.Book name\n2.Book id\n3.Book genre";
+  cout<<"4.Book author\n5.Price\n6.Edition";
+  cout<<"7.Total quantity\n8.Quantity left after issuing\n";
 
   cin>>choice;
 
   switch(choice)
   {
   case 1:
-        cout<<"Enter the book_name";
+        cout<<"\nEnter the book_name:";
         cin>>ptr->b_name;
         break;
 
   case 2:
-        cout<<"Enter the book_id";
+        cout<<"\nEnter the book_id:";
         cin>>ptr->b_id;
         break;
 
   case 3:
-        cout<<"Enter the book_genre";
+        cout<<"\nEnter the book_genre:";
         cin>>ptr->b_genre;
         break;
 
   case 4:
-        cout<<"Enter the book_author";
+        cout<<"\nEnter the book_author:";
         cin>>ptr->b_author;
         break;
 
   case 5:
-        cout<<"Enter the price of book";
+        cout<<"\nEnter the price of book:";
         cin>>ptr->price;
         break;
 
   case 6:
-        cout<<"Enter the book_edition";
+        cout<<"\nEnter the book_edition:";
         cin>>ptr->edition;
         break;
 
   case 7:
-        cout<<"Enter the total quantity";
+        cout<<"\nEnter the total quantity:";
         cin>>ptr->total_qty;
         break;
 
   case 8:
-        cout<<"Enter the remaining quantity";
+        cout<<"\nEnter the remaining quantity:";
         cin>>ptr->qty_left;
         break;
         }
@@ -217,17 +217,18 @@ b_node *book:: srch(char arr[5])
    return NULL;
 }
 
-void book :: issue()
+void book :: issue()//To be Reviewed
 {
-if( p.qty_left>0)
-{p.qty_left-=1;}
-else
-cout <<"cannot issue";
-cout<<"left " << p.qty_left ;
+    if( p.qty_left>0)
+    {p.qty_left-=1;}
+    else
+    cout <<"Cannot issue";
+    cout<<"left " << p.qty_left ;
 }
 
-void book:: b_return()
-{ p.qty_left+=1;
+void book:: b_return()//To be Reviewed
+{ 
+    p.qty_left+=1;
 }
 
 
