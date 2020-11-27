@@ -49,13 +49,14 @@ void book::display()
     struct b_node *newnode = head;
     while(newnode!=NULL)
 {
-    cout<<" \nBook name :"<<newnode->b_name<<endl;
-    cout<<" Book ID :"<<newnode->b_id<<endl;
-    cout<<"Book genre :"<<newnode->b_genre<<endl;
-    cout<<"Book author :"<<newnode->b_author<<endl;
-    cout<<"Price of the book :"<<newnode->price<<endl;
-    cout<<"Book edition :"<<newnode->edition<<endl;
-    cout<<"Total quantity of the book :"<<newnode-> total_qty<<endl;
+    cout<<" book name :"<<newnode->b_name<<endl;
+    cout<<" book ID :"<<newnode->b_id<<endl;
+    cout<<"book genre :"<<newnode->b_genre<<endl;
+    cout<<"book author :"<<newnode->b_author<<endl;
+    cout<<"price of the book :"<<newnode->price<<endl;
+    cout<<"book edition :"<<newnode->edition<<endl;
+    cout<<"quantity of the book :"<<newnode-> total_qty<<endl;
+    cout<<"quantity left is "<<newnode->qty_left<<endl;
     newnode=newnode->next;
 }
 }
@@ -64,7 +65,7 @@ void book::add_book()
 {
     struct b_node *newnode;
     newnode= new b_node ;
-    cout<<"\nEnter book name\n";
+    cout<<"Enter book name\n";
     cin>>newnode->b_name;
     cout<<"Enter book ID\n";
     cin>>newnode->b_id;
@@ -78,12 +79,12 @@ void book::add_book()
     cin>>newnode->edition;
     cout<<"Enter quantity of the book\n";
     cin>>newnode-> total_qty;
+
     //printf(“Number of books left”);
     // to be or not to be taken by the user!
     newnode->times = 0;
     newnode->qty_left=newnode->total_qty;
     newnode->next=NULL;
-
     if(head==NULL)
     {
         head=newnode;
@@ -99,21 +100,38 @@ void book::add_book()
 //REMOVE BOOK---TO BE REVIEWED
 void book::remove_book()
 {
-    int b;
-    cout<<"\nEnter element to be deleted:";
-    cin>>b;
-    int i=1;
-    struct b_node * temp;
-    struct b_node * nextnode;
+   char book_id[5];
+ cout<<"Enter book_id to edit details";
+ cin>>book_id;
+ b_node * ptr;
+ //ptr = new b_node;
+  ptr= srch(book_id);
+
+    struct b_node *temp;
+    struct b_node *save ;
     temp=head;
-    while(i<b-1)
-        {
-            temp=temp->next;
-            i++;
+    if(ptr==NULL){
+        cout<<"cannot delete \n";
+    }
+
+    else if(ptr==head){
+        head=head->next;
+        if(ptr==tail){
+            tail=head;
         }
-     nextnode=temp->next;
-     temp->next=nextnode->next;
-     delete nextnode;
+
+            delete ptr;
+
+            cout<<"book deleted ";  }
+else{
+    while(temp!=ptr)
+        {save =temp;
+            temp=temp->next;
+              }
+  save->next = ptr->next ;
+ if(ptr->next==NULL){
+ tail =save;}
+  delete ptr;}
 
 
 }//review this
@@ -126,7 +144,7 @@ void book::remove_book()
 void book :: reissue()
 {
     char book_id[5];
-    cout<<"\nEnter book ID";
+    cout<<"Enter book ID";
     cin>>book_id;
    struct b_node *ptr = srch(book_id);
     if(ptr->times < 3)
@@ -148,51 +166,51 @@ void book :: edit_detail()// A lot of mistakes--to be checked
 
   ptr= srch(book_id);
   cout<<"Enter choice";
-  cout<<"1.Book name\n2.Book id\n3.Book genre";
-  cout<<"4.Book author\n5.Price\n6.Edition";
-  cout<<"7.Total quantity\n8.Quantity left after issuing\n";
+  cout<<"1.book_name\n2.book_id\n3.book_genre";
+  cout<<"4.book_author\n5.price\n6.edition";
+  cout<<"7.total_qty\n8.qty_left";
 
   cin>>choice;
 
   switch(choice)
   {
   case 1:
-        cout<<"\nEnter the book_name:";
+        cout<<"Enter the book_name";
         cin>>ptr->b_name;
         break;
 
   case 2:
-        cout<<"\nEnter the book_id:";
+        cout<<"Enter the book_id";
         cin>>ptr->b_id;
         break;
 
   case 3:
-        cout<<"\nEnter the book_genre:";
+        cout<<"Enter the book_genre";
         cin>>ptr->b_genre;
         break;
 
   case 4:
-        cout<<"\nEnter the book_author:";
+        cout<<"Enter the book_author";
         cin>>ptr->b_author;
         break;
 
   case 5:
-        cout<<"\nEnter the price of book:";
+        cout<<"Enter the price of book";
         cin>>ptr->price;
         break;
 
   case 6:
-        cout<<"\nEnter the book_edition:";
+        cout<<"Enter the book_edition";
         cin>>ptr->edition;
         break;
 
   case 7:
-        cout<<"\nEnter the total quantity:";
+        cout<<"Enter the total quantity";
         cin>>ptr->total_qty;
         break;
 
   case 8:
-        cout<<"\nEnter the remaining quantity:";
+        cout<<"Enter the remaining quantity";
         cin>>ptr->qty_left;
         break;
         }
@@ -217,18 +235,36 @@ b_node *book:: srch(char arr[5])
    return NULL;
 }
 
-void book :: issue()//To be Reviewed
-{
-    if( p.qty_left>0)
-    {p.qty_left-=1;}
-    else
-    cout <<"Cannot issue";
-    cout<<"left " << p.qty_left ;
-}
+void book :: issue()
+{char book_id[5];
+ cout<<"Enter book_id to issue book";
+ cin>>book_id;
 
-void book:: b_return()//To be Reviewed
-{ 
-    p.qty_left+=1;
+ b_node * ptr;
+ //ptr = new b_node;
+
+  ptr= srch(book_id);
+if( ptr->qty_left>0)
+{ptr->qty_left-=1;}
+else
+{cout <<"cannot issue";
+cout<<"quantity left " << ptr->qty_left ;
+}
+}
+void book:: b_return()
+{ char book_id[5];
+ cout<<"Enter book_id to return book";
+ cin>>book_id;
+
+ b_node * ptr;
+ //ptr = new b_node;
+
+  ptr= srch(book_id);
+
+if(ptr->qty_left<ptr->total_qty)
+    ptr->qty_left+=1;
+    else
+        cout<<"invalid return ";
 }
 
 
@@ -311,13 +347,54 @@ void visitor::add_member()
 
 int main()
 {
+    int flag=0;
+    do{
     cout << "Hello world!" << endl;
-    b.add_book();
-    b.add_book();
-    b.display();
-    b.edit_detail();
-    b.display();
+    int ch ;
+    cout<<"ADD URLS "<<endl;
+    cout<<"--------------------MENU------------------------------------"<<endl;
+    cout<<"------------------1.enter book details--------------------- "<<endl;
+    cout<<"------------------2.remove / delete a book------------------"<<endl;
+    cout<<"------------------3.Edit book details ----------------------"<<endl;
+    cout<<"------------------4.issue book -----------------------------"<<endl;
+    cout<<"------------------5.reissue book----------------------------"<<endl;
+    cout<<"------------------6.return a book --------------------------"<<endl;
+    cout<<"------------------7.display---------------------------------"<<endl;
+    cout<<"------------------Enter your choice------------------------ "<<endl;
+    cin>>ch;
+    switch(ch){
+    case 1: b.add_book();
+    cout<<"l--------l        l-------l "<<endl;
+    cout<<"l        l        l       l"<<endl;
+    cout<<"l        l---->   l       l"<<endl;
+    cout<<"l--------l        l-------l"<<endl;
 
+    cout<<"\n\t=====================ADDITION IN A LINKED LIST!!============================\n\n";
+   system("cmd/c start https://visualgo.net/en/list/");
+    break;
+      case 2: b.remove_book();
+    break;
 
-    return 0;
+      case 3: b.edit_detail();
+    break;
+
+      case 4: b.issue();
+    break;
+      case 5:
+        b.reissue();
+        break;
+        case 6: b.b_return();
+        break;
+        case 7: b.display();
+        break;
+        case 8:
+            cout<<"exiting ";
+            flag=1;
+            break;
+
+      default :
+          cout<<"invalid ";
+          break;
+         } }while(flag!=1);
+         return 0;
 }
