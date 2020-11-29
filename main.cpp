@@ -1,3 +1,4 @@
+//PLEASE READ THE README FILE IF YOUR ANIMATIONS ARE NOT WORKING
 #include <iostream>
 #include<string.h>
 #include<graphics.h>
