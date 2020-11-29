@@ -1,5 +1,8 @@
 #include <iostream>
 #include<string.h>
+#include<graphics.h>
+#include<conio.h>
+
 using namespace std;
 //BOOK NODE
 struct b_node
@@ -38,7 +41,8 @@ class book
         void reissue();
         void b_return();
         void issue();
-        b_node *srch(char arr[5]);
+        b_node * srch(char arr[5]);
+        b_node * reverse_ll(/*b_node * head--- if this is made as a non-class function*/);
 
         //void  recommend_book(head);
 }b;
@@ -63,6 +67,7 @@ void book::display()
 //ADD BOOK
 void book::add_book()
 {
+    int i =1;
     struct b_node *newnode;
     newnode= new b_node ;
     cout<<"Enter book name\n";
@@ -95,11 +100,35 @@ void book::add_book()
         tail->next=newnode;
         tail=newnode;
     }
+    cout<<"Node added";
+    cout<<"\nLet us visualize insertion between a linked list\nPress enter...\n";
+    getche();
+
+    initwindow(2000,2000,"Insertion");
+
+    while(i < 3)
+    {
+        readimagefile("frame_0_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_1_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_2_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_3_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_4_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_5_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        i++;
+    }
+    closegraph();
 
 }
 //REMOVE BOOK---TO BE REVIEWED
 void book::remove_book()
 {
+   int i = 1;
    char book_id[5];
  cout<<"Enter book_id to edit details";
  cin>>book_id;
@@ -132,6 +161,34 @@ else{
  if(ptr->next==NULL){
  tail =save;}
   delete ptr;}
+
+  cout<<"\nLet us visualize deletion of a given node\nPress enter...\n";
+    getche();
+
+    initwindow(2000,2000,"Insertion");
+
+    while(i < 3)
+    {
+        readimagefile("frame_1_delay-1.5s (2).gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_2_delay-1.5s (2).gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_3_delay-1.5s (2).gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_4_delay-1.5s (2).gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_5_delay-1.5s (2).gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_6_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_7_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+        readimagefile("frame_8_delay-1.5s.gif",10,10,1024,768);
+        delay(1500);
+
+        i++;
+    }
+    closegraph();
 
 
 }//review this
@@ -267,6 +324,22 @@ if(ptr->qty_left<ptr->total_qty)
         cout<<"invalid return ";
 }
 
+b_node * book:: reverse_ll()
+{
+    b_node * prev = NULL;
+    b_node * curr = head;
+    b_node * nextnode = NULL;
+
+    while(curr)
+    {
+        nextnode = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextnode;
+    }
+
+    return prev;
+}
 
 /*
 //VISITOR STRUCTURE
@@ -347,10 +420,12 @@ void visitor::add_member()
 
 int main()
 {
-    int flag=0;
-    do{
+    int flag=0,i=1;
+
+do{
     cout << "Hello world!" << endl;
     int ch ;
+
     cout<<"ADD URLS "<<endl;
     cout<<"--------------------MENU------------------------------------"<<endl;
     cout<<"------------------1.enter book details--------------------- "<<endl;
@@ -364,14 +439,7 @@ int main()
     cin>>ch;
     switch(ch){
     case 1: b.add_book();
-    cout<<"l--------l        l-------l "<<endl;
-    cout<<"l        l        l       l"<<endl;
-    cout<<"l        l---->   l       l"<<endl;
-    cout<<"l--------l        l-------l"<<endl;
-
-    cout<<"\n\t=====================ADDITION IN A LINKED LIST!!============================\n\n";
-   system("cmd/c start https://visualgo.net/en/list/");
-    break;
+            break;
       case 2: b.remove_book();
     break;
 
