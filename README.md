@@ -8,3 +8,5 @@ This project aims at creating a Library Management System using the Data Structu
 
 
 This project helped us to understand the Linked List Data Structure and its various operations .
+
+![image](https://user-images.githubusercontent.com/73870998/101283017-3a0bba00-37fe-11eb-8860-b5fe58467fe9.png)
