@@ -1,5 +1,6 @@
 //PLEASE READ THE README FILE IF YOUR ANIMATIONS ARE NOT WORKING
-#include <iostream>
+//strings with spaces cannot be added
+#include<iostream>
 #include<string.h>
 #include<stdio.h>
 #include<graphics.h>
@@ -40,7 +41,7 @@ class book
         void display();
         void times_initialize();
         void edit_detail();
-        void reissue();
+        //void reissue();
         void b_return();
         void issue();
         b_node * srch(char arr[5]);
@@ -59,18 +60,20 @@ void book::display()
         cout<<"------------------------------------------------------------------------------------------"<<endl;
     }
     else
-    {while(newnode!=NULL)
-{
-    cout<<"                                       BOOK NAME  :"<<newnode->b_name<<endl;
-    cout<<"                                       BOOK ID :"<<newnode->b_id<<endl;
-    cout<<"                                       BOOK GENRE :"<<newnode->b_genre<<endl;
-    cout<<"                                       BOOK AUTHOR  :"<<newnode->b_author<<endl;
-    cout<<"                                       PRICE OF THE BOOK  :"<<newnode->price<<endl;
-    cout<<"                                       BOOK EDITION :"<<newnode->edition<<endl;
-    cout<<"                                       QUANTITY OF THE BOOK :"<<newnode-> total_qty<<endl;
-    cout<<"                                       QUANTITY LEFT IS : "<<newnode->qty_left<<endl;
-    newnode=newnode->next;
-}}
+    {
+        while(newnode!=NULL)
+        {
+            cout<<"                                       BOOK NAME  :"<<newnode->b_name<<endl;
+            cout<<"                                       BOOK ID :"<<newnode->b_id<<endl;
+            cout<<"                                       BOOK GENRE :"<<newnode->b_genre<<endl;
+            cout<<"                                       BOOK AUTHOR  :"<<newnode->b_author<<endl;
+            cout<<"                                       PRICE OF THE BOOK  :"<<newnode->price<<endl;
+            cout<<"                                       BOOK EDITION :"<<newnode->edition<<endl;
+            cout<<"                                       QUANTITY OF THE BOOK :"<<newnode-> total_qty<<endl;
+            cout<<"                                       QUANTITY LEFT IS : "<<newnode->qty_left<<endl;
+            newnode=newnode->next;
+        }
+    }
 }
 //ADD BOOK
 void book::add_book()
@@ -84,9 +87,9 @@ void book::add_book()
     cin>>newnode->b_id;
     cout<<"                                       Enter book genre ";
     cin>>newnode->b_genre;
-    cout<<"                                       Enter book author ";
-    cin>> newnode->b_author;
-    cout<<"                                       Enter price of the book ";
+    cout<<"                                       Enter book author";
+    cin>>newnode->b_author;
+    cout<<"\n                                       Enter price of the book ";
     cin>> newnode->price;
     cout<<"                                       Enter book edition ";
     cin>>newnode->edition;
@@ -113,8 +116,9 @@ void book::add_book()
     cout<<"                                   \nLet us visualize insertion between a linked list\nPress enter...\n";
     getche();
 
+    //Open new window
     initwindow(2000,2000,"Insertion");
-
+    //Animation code
     while(i < 3)
     {
         readimagefile("frame_0_delay-1.5s.gif",10,10,1024,768);
@@ -137,48 +141,50 @@ void book::add_book()
 //REMOVE BOOK---TO BE REVIEWED
 void book::remove_book()
 {
-   int i = 1;
-   char book_id[5];
+    int i = 1;
+    char book_id[5];
 
     cout<<"Enter book_id:";
-     cin>>book_id;
-     b_node * ptr;
-     ptr = new b_node;
-      ptr= srch(book_id);
+    cin>>book_id;
 
-        struct b_node *temp;
-        struct b_node *save ;
-        temp=head;
-        if(ptr==NULL)
-            cout<<"cannot delete \n";
+    b_node * ptr;
+    ptr = new b_node;
+    ptr= srch(book_id);
+    struct b_node *temp;
+    struct b_node *save ;
+    temp=head;
 
+    if(ptr==NULL)
+        cout<<"cannot delete \n";
 
-        else if(ptr==head){
+    else if(ptr==head)
+        {
             head=head->next;
-            if(ptr==tail){
+            if(ptr==tail)
                 tail=head;
-            }
+            delete ptr;
+            cout<<"                                                 Book deleted ";
+        }
+     else
+        {
+            while(temp!=ptr)
+                {
+                    save =temp;
+                    temp=temp->next;
+                }
+            save->next = ptr->next ;
+            if(ptr->next==NULL)
+                tail =save;
+            delete ptr;
+        }
 
-                delete ptr;
-
-                cout<<"                                                 Book deleted ";  }
-    else{
-        while(temp!=ptr)
-            {save =temp;
-                temp=temp->next;
-                  }
-      save->next = ptr->next ;
-     if(ptr->next==NULL){
-     tail =save;}
-      delete ptr;}
-
-      cout<<"\n                                                         Let us visualize deletion of a given node\nPress enter...\n";
-    getche();
-
-    initwindow(2000,2000,"Insertion");
-
-    while(i < 3)
-    {
+     cout<<"\n                                                         Let us visualize deletion of a given node\nPress enter...\n";
+     getche();
+     //Open new window
+     initwindow(2000,2000,"Insertion");
+     //Animation code
+     while(i < 3)
+     {
         readimagefile("frame_1_delay-1.5s (2).gif",10,10,1024,768);
         delay(1500);
         readimagefile("frame_2_delay-1.5s (2).gif",10,10,1024,768);
@@ -197,8 +203,8 @@ void book::remove_book()
         delay(1500);
 
         i++;
-    }
-    closegraph();
+     }
+     closegraph();
 
 
 }//review this
@@ -208,7 +214,7 @@ void book::remove_book()
 //    times = 0;
 //}
 
-void book :: reissue()
+/*void book :: reissue()
 {
     char book_id[5];
     cout<<"                                      Enter book ID";
@@ -218,10 +224,10 @@ void book :: reissue()
          ptr->times++;
     else
          cout<<"                                 Book cannot be reissued!";
-}
+}*/
 
-
-void book :: edit_detail()// A lot of mistakes--to be checked
+//EDIT DETAILS
+void book :: edit_detail()
 {
       char book_id[5];
       cout<<"                                         Enter book_id to edit details";
@@ -229,7 +235,6 @@ void book :: edit_detail()// A lot of mistakes--to be checked
       int choice;
 
       b_node * ptr;
-     //ptr = new b_node;
       ptr= srch(book_id);
 
       if(ptr == NULL)
@@ -283,11 +288,12 @@ void book :: edit_detail()// A lot of mistakes--to be checked
               case 7:
                     cout<<"                                  Enter the total quantity";
                     cin>>ptr->total_qty;
-
+                    ptr->qty_left  = ptr->total_qty;
                     break;
 
               default:
-                cout<<"invalid choice!!";
+                    cout<<"invalid choice!!";
+                    break;
 
             }
     }
@@ -309,27 +315,28 @@ b_node *book:: srch(char arr[5])
 }
 
 void book :: issue()
-{char book_id[5];
- cout<<"                                        Enter book_id to issue book";
- cin>>book_id;
+{   char book_id[5];
+    cout<<"                                        Enter book_id to issue book";
+    cin>>book_id;
 
- b_node * ptr;
- //ptr = new b_node;
+    b_node * ptr;
 
-  ptr= srch(book_id);
-if( ptr->qty_left>0)
-{ptr->qty_left-=1;}
-else
-{cout <<"                                       CANNOT ISSUE!!";
-cout<<"                                         quantity left " << ptr->qty_left ;
-}
+    ptr= srch(book_id);
+    if(ptr->qty_left>0)
+        {
+            ptr->qty_left-=1;
+        }
+    else
+        {
+            cout <<"                                       CANNOT ISSUE!!";
+            cout<<"                                         quantity left " << ptr->qty_left ;
+        }
 }
 void book:: b_return()
 {    char book_id[5];
      cout<<"                                        Enter book_id to return book";
      cin>>book_id;
      b_node * ptr;
-     //ptr = new b_node;
      ptr= srch(book_id);
 
      if(ptr->qty_left<ptr->total_qty)
@@ -369,7 +376,6 @@ struct v_node
     int reissue_times;//DO NOT take this as input from user
     double money_due;
     char m_b_id[5];//id of book issued to member, only one book can be issued at a time
-
     v_node * next;
 };
 //VISITOR CLASS
@@ -381,20 +387,15 @@ class visitor
         {
             head=NULL;
         }
-
         void add_member();
         void remove_member();
         void add_details();
         void remove_details();
         void update_details();
-
         //Issue
         //Re-issue
         //Return
 }v;
-
-
-
 //ADDING MEMBER
 void visitor::add_member()
 {
@@ -417,7 +418,6 @@ void visitor::add_member()
     cout<<"Enter book id issued\n";
     cin>> newnode->m_b_id;
     newnode->next=NULL;
-
     if(head==NULL)
     {
         head=newnode;
@@ -428,7 +428,6 @@ void visitor::add_member()
         tail->next=newnode;
         tail=newnode;
     }
-
 }
 */
 
@@ -437,12 +436,12 @@ int main()
 {
 
     system("COLOR B0");
-cout<<"\n\n";
-    cout<<"-----------------------------------------------------------------------------------------------------------------------";
+    cout<<"\n\n";
+    cout<<"-----------------------------------------------------------------------------------------------------------------------"<<endl;
     cout<<"                                             LIBRARY MANAGEMENT SYSTEM                              "<<endl;
     cout<<"                                    DATA STRUCTURES PROJECT USING LINKED LISTS                      "<<endl;
-    cout<<"-----------------------------------------------------------------------------------------------------------------------";
-     int flag=0,i=1;
+    cout<<"-----------------------------------------------------------------------------------------------------------------------"<<endl;
+     int flag=0;
 
 do{
 
@@ -455,40 +454,38 @@ do{
     cout<<"                   **-------------------------2.REMOVE BOOK ----------------------------**\n"<<endl;
     cout<<"                   **-------------------------3.EDIT BOOK DETAILS ----------------------**\n"<<endl;
     cout<<"                   **-------------------------4.ISSUE BOOK -----------------------------**\n"<<endl;
-    cout<<"                   **-------------------------5.REISSUE BOOK----------------------------**\n"<<endl;
-    cout<<"                   **-------------------------6.RETURN A BOOK --------------------------**\n"<<endl;
-    cout<<"                   **-------------------------7.DISPLAY---------------------------------**\n"<<endl;
-    cout<<"                   **-------------------------8.EXIT---------------------------------**\n"<<endl;
+    //cout<<"                   **-------------------------5.REISSUE BOOK----------------------------**\n"<<endl;
+    cout<<"                   **-------------------------5.RETURN A BOOK --------------------------**\n"<<endl;
+    cout<<"                   **-------------------------6.DISPLAY---------------------------------**\n"<<endl;
+    cout<<"                   **-------------------------7.EXIT---------------------------------**\n"<<endl;
     cout<<"                   **-------------------------Enter your choice?------------------------**\n"<<endl;
     cout<<"                   ***********************************************************************"<<endl;
     cout<<"                   ***********************************************************************"<<endl;
     cin>>ch;
-    switch(ch){
-    case 1: b.add_book();
-            break;
-      case 2: b.remove_book();
-    break;
+    switch(ch)
+    {
+            case 1: b.add_book();
+                    break;
+            case 2: b.remove_book();
+                    break;
+            case 3: b.edit_detail();
+                    break;
+            case 4: b.issue();
+                    break;
+                  /*case 5:
+                    b.reissue();
+                    break;*/
+            case 5: b.b_return();
+                    break;
+            case 6: b.display();
+                    break;
+            case 7: cout<<"Exiting...";
+                    flag = 1;
+                    break;
 
-      case 3: b.edit_detail();
-    break;
-
-      case 4: b.issue();
-    break;
-      case 5:
-        b.reissue();
-        break;
-        case 6: b.b_return();
-        break;
-        case 7: b.display();
-        break;
-        case 8:
-            cout<<"exiting ";
-            flag=1;
-            break;
-
-      default :
-          cout<<"invalid ";
-          break;
-         } }while(flag!=1);
+            default:cout<<"invalid ";
+                    break;
+    }
+  }while(flag!=1);
          return 0;
 }
