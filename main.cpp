@@ -17,7 +17,7 @@ struct b_node
     int edition;
     int total_qty;
     int qty_left;
-    //int times;
+    int times;
 
     b_node * next;
 }p;
@@ -38,9 +38,9 @@ class book
         void update_b_details();
         void remove_book();
         void display();
-        //void times_initialize();
+        void times_initialize();
         void edit_detail();
-        //void reissue();
+        void reissue();
         void b_return();
         void issue();
         b_node * srch(char arr[5]);
@@ -98,6 +98,7 @@ void book::add_book()
     //newnode->times = 0;
     newnode->qty_left=newnode->total_qty;
     newnode->next=NULL;
+    newnode->times=0;
     if(head==NULL)
     {
         head=newnode;
@@ -202,10 +203,10 @@ void book::remove_book()
 
 }//review this
 
-/*void book :: times_initialize()
-{
-    times = 0;
-}
+//void book :: times_initialize()
+//{
+//    times = 0;
+//}
 
 void book :: reissue()
 {
@@ -217,7 +218,7 @@ void book :: reissue()
          ptr->times++;
     else
          cout<<"                                 Book cannot be reissued!";
-}*/
+}
 
 
 void book :: edit_detail()// A lot of mistakes--to be checked
@@ -235,11 +236,15 @@ void book :: edit_detail()// A lot of mistakes--to be checked
         cout<<"\nERROR: No Book in the database\n";
 
       else
-      {
-          cout<<"                                       Enter choice";
-          cout<<"                                       1.Book_name\n2.Book_id\n3.Book_genre";
-          cout<<"                                       \n4.Book author\n5.Price\n6.Book Edition";
-          cout<<"                                       \n7.Total quantity\n8.Quantity left";
+      {   cout<<"              ENTER CHOICE\n";
+          cout<<"            1.Book name \n";
+          cout<<"            2.Book Id\n";
+          cout<<"            3.Book Genre \n";
+          cout<<"            4.Book Author\n";
+          cout<<"            5.Price\n";
+          cout<<"            6.Book Edition\n";
+          cout<<"            7.Total Quantity";
+
 
           cin>>choice;
 
@@ -278,12 +283,12 @@ void book :: edit_detail()// A lot of mistakes--to be checked
               case 7:
                     cout<<"                                  Enter the total quantity";
                     cin>>ptr->total_qty;
+
                     break;
 
-              case 8:
-                    cout<<"                                  Enter the remaining quantity";
-                    cin>>ptr->qty_left;
-                    break;
+              default:
+                cout<<"invalid choice!!";
+
             }
     }
 }
@@ -450,7 +455,7 @@ do{
     cout<<"                   **-------------------------2.REMOVE BOOK ----------------------------**\n"<<endl;
     cout<<"                   **-------------------------3.EDIT BOOK DETAILS ----------------------**\n"<<endl;
     cout<<"                   **-------------------------4.ISSUE BOOK -----------------------------**\n"<<endl;
-    //cout<<"                   **-------------------------5.REISSUE BOOK----------------------------**\n"<<endl;
+    cout<<"                   **-------------------------5.REISSUE BOOK----------------------------**\n"<<endl;
     cout<<"                   **-------------------------6.RETURN A BOOK --------------------------**\n"<<endl;
     cout<<"                   **-------------------------7.DISPLAY---------------------------------**\n"<<endl;
     cout<<"                   **-------------------------8.EXIT---------------------------------**\n"<<endl;
@@ -469,9 +474,9 @@ do{
 
       case 4: b.issue();
     break;
-      /*case 5:
+      case 5:
         b.reissue();
-        break;*/
+        break;
         case 6: b.b_return();
         break;
         case 7: b.display();
