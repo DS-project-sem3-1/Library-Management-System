@@ -44,12 +44,25 @@ class book
         //void reissue();
         void b_return();
         void issue();
+     void count_books();
         b_node * srch(char arr[5]);
         b_node * reverse_ll(/*b_node * head--- if this is made as a non-class function*/);
 
         //void  recommend_book(head);
 }b;
 
+//COUNT NO. OF BOOKS
+void book::count_books(){
+        struct b_node *newnode = head;
+            struct b_node *temp = head;
+int cn=0;
+        while(temp!=NULL){
+            temp=temp->next;
+            cn++;
+        }
+        cout<<"                            the number of books in the library are :"<<cn;
+
+}
 //DISPLAY ALL BOOKS
 void book::display()
 {
@@ -89,7 +102,7 @@ void book::add_book()
     cin>>newnode->b_genre;
     cout<<"                                       Enter book author";
     cin>>newnode->b_author;
-    cout<<"\n                                       Enter price of the book ";
+    cout<<"                                       Enter price of the book ";
     cin>> newnode->price;
     cout<<"                                       Enter book edition ";
     cin>>newnode->edition;
@@ -432,7 +445,7 @@ void visitor::add_member()
 */
 
 
-int main()
+int main()++
 {
 
     system("COLOR B0");
@@ -454,10 +467,11 @@ do{
     cout<<"                   **-------------------------2.REMOVE BOOK ----------------------------**\n"<<endl;
     cout<<"                   **-------------------------3.EDIT BOOK DETAILS ----------------------**\n"<<endl;
     cout<<"                   **-------------------------4.ISSUE BOOK -----------------------------**\n"<<endl;
-    //cout<<"                   **-------------------------5.REISSUE BOOK----------------------------**\n"<<endl;
+//    cout<<"                   **-------------------------5.REISSUE BOOK----------------------------**\n"<<endl;
     cout<<"                   **-------------------------5.RETURN A BOOK --------------------------**\n"<<endl;
     cout<<"                   **-------------------------6.DISPLAY---------------------------------**\n"<<endl;
-    cout<<"                   **-------------------------7.EXIT---------------------------------**\n"<<endl;
+    cout<<"                   **-------------------------7.COUNT NUMBER OF BOOKS STORED-------------**\n"<<endl;
+    cout<<"                   **-------------------------8.EXIT---------------------------------**\n"<<endl;
     cout<<"                   **-------------------------Enter your choice?------------------------**\n"<<endl;
     cout<<"                   ***********************************************************************"<<endl;
     cout<<"                   ***********************************************************************"<<endl;
@@ -479,7 +493,9 @@ do{
                     break;
             case 6: b.display();
                     break;
-            case 7: cout<<"Exiting...";
+            case 7: b.count_books();
+                    break;
+            case 8: cout<<"Exiting...";
                     flag = 1;
                     break;
 
