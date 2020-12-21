@@ -445,7 +445,7 @@ void visitor::add_member()
 */
 
 
-int main()++
+int main()
 {
 
     system("COLOR B0");
